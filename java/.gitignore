@@ -1,0 +1,16 @@
+# Maven #
+target/
+log/
+
+# Java output #
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# IntelliJ #
+*.iml
+*.iws
+.idea/*
+!.idea/codeStyleSettings.xml

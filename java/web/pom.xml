@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>kaer.morhen</groupId>
+        <artifactId>kaer-morhen-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>web</artifactId>
+    <packaging>jar</packaging>
+    <name>Kaer Morhen :: Angular application</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>app/dist</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>app/.tmp</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-html-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}/META-INF/resources
+                            </outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>app/dist</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptor>src/assembly/assembly-yo-frontend.xml</descriptor>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>create-archive</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>prepare-for-building</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <inherited>false</inherited>
+                    </execution>
+                    <execution>
+                        <id>building-phase</id>
+                        <phase>compile</phase>
+                        <configuration>
+                            <target name="building">
+                                <echo>
+                                    ---- BUILD DEV ---- NPM INSTALL ----
+                                </echo>
+                                <exec executable="cmd" dir="${project.basedir}/app" osfamily="windows"
+                                      failonerror="true">
+                                    <arg line="/c npm install"/>
+                                </exec>
+                                <exec executable="npm" dir="${project.basedir}/app" osfamily="unix"
+                                      failonerror="true">
+                                    <arg line="install"/>
+                                </exec>
+                                <echo>
+                                    ---- BUILD PROD ---- GULP BUILD ----
+                                </echo>
+                                <exec executable="cmd" dir="${project.basedir}/app" osfamily="windows"
+                                      resultproperty="cmdresult">
+                                    <arg line="/c gulp build-prod"/>
+                                </exec>
+                                <exec executable="gulp" dir="${project.basedir}/app" osfamily="unix"
+                                      resultproperty="cmdresult">
+                                    <arg line="build-prod"/>
+                                </exec>
+                                <condition property="cmdsuccess">
+                                    <equals arg1="${cmdresult}" arg2="0"/>
+                                </condition>
+                                <fail unless="cmdsuccess">An error occurred during gulp build.</fail>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
