@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="hotelRestFilter" class="com.se.hotel.filter.CorsFilter"/>
-    <bean id="hotelWebFilter" class="com.se.hotel.filter.CorsFilter"/>
+    <bean id="kaerMorhenRestFilter" class="kaer.morhen.filter.CorsFilter"/>
+    <bean id="kaerMorhenWebFilter" class="kaer.morhen.filter.CorsFilter"/>
 
 </beans>

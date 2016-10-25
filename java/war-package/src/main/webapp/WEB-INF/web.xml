@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <display-name>Hotel Front</display-name>
+    <display-name>Kaer Morhen WAR package</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -38,22 +38,22 @@
     </servlet-mapping>
 
     <filter>
-        <filter-name>hotelRestFilter</filter-name>
+        <filter-name>kaerMorhenRestFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
 
     <filter>
-        <filter-name>hotelWebFilter</filter-name>
+        <filter-name>kaerMorhenWebFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
 
     <filter-mapping>
-        <filter-name>hotelRestFilter</filter-name>
+        <filter-name>kaerMorhenRestFilter</filter-name>
         <url-pattern>/rest/*</url-pattern>
     </filter-mapping>
 
     <filter-mapping>
-        <filter-name>hotelWebFilter</filter-name>
+        <filter-name>kaerMorhenWebFilter</filter-name>
         <url-pattern>/index.html</url-pattern>
     </filter-mapping>
 

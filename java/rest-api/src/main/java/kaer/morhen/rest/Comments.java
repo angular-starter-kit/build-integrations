@@ -19,9 +19,9 @@ public class Comments {
     public Comments() {
         if (comments == null) {
             comments = new ArrayList<>();
-            comments.add(new Comment("alice", "luxueux comme j'aime"));
-            comments.add(new Comment("bob", "tro bi1"));
-            comments.add(new Comment("charles", "le beige des murs devrait être un peu plus taupe"));
+            comments.add(new Comment("Alice", "Alice in Wonderland"));
+            comments.add(new Comment("Bob", "BOB LIKES CAPS LOCK"));
+            comments.add(new Comment("Charles", "The King of Hearts"));
         }
     }
 

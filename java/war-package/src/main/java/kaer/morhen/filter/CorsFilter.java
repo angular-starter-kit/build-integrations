@@ -1,4 +1,4 @@
-package com.se.hotel.filter;
+package kaer.morhen.filter;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 

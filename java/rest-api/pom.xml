@@ -30,11 +30,5 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- Project modules -->
-    <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>model</artifactId>
-    </dependency>
-
   </dependencies>
 </project>

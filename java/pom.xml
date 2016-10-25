@@ -7,12 +7,6 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <scm>
-    <url>https://github.com/angular-starter-kit/build-integrations.git</url>
-    <connection>https://github.com/angular-starter-kit/build-integrations.git</connection>
-    <developerConnection>https://github.com/angular-starter-kit/build-integrations.git</developerConnection>
-  </scm>
-
   <name>Kaer Morhen :: Aggregator project</name>
 
   <properties>
@@ -36,7 +30,6 @@
     <logging.version>1.2</logging.version>
     <!-- plugins versions -->
     <maven.scm.plugin.version>1.9</maven.scm.plugin.version>
-    <maven.scm.provider.gitexe.version>1.8.1</maven.scm.provider.gitexe.version>
     <build.helper.maven.plugin.version>1.8</build.helper.maven.plugin.version>
     <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
     <maven.release.plugin.version>2.4.2</maven.release.plugin.version>
@@ -50,7 +43,6 @@
     <ant.nodeps.version>1.8.1</ant.nodeps.version>
     <maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
     <ant.contrib.version>1.0b3</ant.contrib.version>
-    <buildnumber.maven.plugin.version>1.2</buildnumber.maven.plugin.version>
     <!-- extension versions -->
     <wagon.file.version>2.6</wagon.file.version>
     <!-- reporting versions -->
@@ -211,19 +203,6 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-scm-plugin</artifactId>
-          <version>${maven.scm.plugin.version}</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.apache.maven.scm</groupId>
-              <artifactId>maven-scm-provider-gitexe</artifactId>
-              <!-- This version is necessary for use with git version 1.8.5 -->
-              <version>${maven.scm.provider.gitexe.version}</version>
-            </dependency>
-          </dependencies>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
           <version>${versions.maven.plugin.version}</version>
@@ -296,54 +275,7 @@
     </extensions>
   </build>
 
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>${maven.project.info.reports.plugin.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${maven.javadoc.plugin.version}</version>
-        <reportSets>
-          <reportSet>
-            <id>aggregate</id>
-            <inherited>false</inherited>
-            <!-- don't run aggregate in child modules -->
-            <reports>
-              <report>aggregate</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-        <configuration>
-          <links>
-            <link>http://docs.oracle.com/javase/7/docs/api/</link>
-          </links>
-          <show>protected</show>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>versions-maven-plugin</artifactId>
-        <version>${versions.maven.plugin.version}</version>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>dependency-updates-report</report>
-              <report>plugin-updates-report</report>
-              <report>property-updates-report</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-    </plugins>
-  </reporting>
-
   <profiles>
-
     <profile>
       <id>standard</id>
       <modules>
@@ -356,27 +288,9 @@
       </activation>
       <properties>
         <maven.build.timestamp.format>dd/MM/yyyy</maven.build.timestamp.format>
-        <hotel.build.info>${project.version} - ${maven.build.timestamp}</hotel.build.info>
+        <kaer.morhen.build.info>${project.version} - ${maven.build.timestamp}</kaer.morhen.build.info>
       </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>buildnumber-maven-plugin</artifactId>
-            <version>${buildnumber.maven.plugin.version}</version>
-            <executions>
-              <execution>
-                <phase>validate</phase>
-                <goals>
-                  <goal>create</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
-
   </profiles>
 
 </project>
