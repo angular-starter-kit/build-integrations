@@ -14,3 +14,7 @@ hs_err_pid*
 *.iws
 .idea/*
 !.idea/codeStyleSettings.xml
+
+# Starter kit files #
+web/app/*
+!web/app/deploy-starter-kit-here
