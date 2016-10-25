@@ -1,7 +1,9 @@
 # Angular starter kit : Java / Tomcat / Maven build integration
 
 This repository contains minimal build and configuration files to support deployment of the Angular starter kit as part of a Java ecosystem.
+
 For now Maven is the supported build manager, and Tomcat is the supported application server. Other choices include Spring / Jersey / Jackson for the server stack.
+
 The target deployment architecture is a single WAR file containing both the HTML/JS content, and the server-side REST APIs.
 
 ## How to start
@@ -21,8 +23,11 @@ Once everything is in place, set your IDE to perform the following build steps i
 - execute maven goal clean
 - execute maven goal install
 - deploy the war-package artifact in tomcat
+
 Perform the build, open your web browser at *http://localhost:8080/* and you will land on the default starting page.
+
 You can also go to *http://localhost:8080/rest/alive* which will return a default greeting.
+
 Finally, *http://localhost:8080/rest/comments* supports both GET and PUT operations so you can validate the REST functionality. Use application/json type if you want to try it out.
 
 ## How to customize the solution
