@@ -284,7 +284,7 @@
           <module>web</module>
       </modules>
       <activation>
-        <activeByDefault>false</activeByDefault>
+        <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
         <maven.build.timestamp.format>dd/MM/yyyy</maven.build.timestamp.format>
